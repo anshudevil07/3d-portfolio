@@ -1,0 +1,47 @@
+.cursor-main {
+  --size: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  background-color: var(--pt-cursor, #c084fc);
+  box-shadow: 0px 0px 25px 4px var(--pt-cursor-glow, rgba(175,131,255,0.7));
+  mix-blend-mode: difference;
+  will-change: transform;
+  transition: width 0.2s, height 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+/* Over social icons — tiny ring, no fill, icons fully visible */
+.cursor-no-blend {
+  mix-blend-mode: normal;
+  background-color: transparent !important;
+  border: 2px solid var(--pt-cursor, #c084fc);
+  box-shadow: 0 0 10px 2px var(--pt-cursor-glow, rgba(175,131,255,0.4));
+  width: 32px !important;
+  height: 32px !important;
+}
+
+/* Override the stretch behaviour — keep normal size */
+.cursor-icons {
+  top: unset;
+  left: unset;
+  height: var(--size) !important;
+  transition: all 0.2s ease-out;
+}
+
+.cursor-disable {
+  --size: 0px;
+}
+
+@media only screen and (min-width: 600px) {
+  .cursor-main {
+    --size: 50px;
+  }
+  .cursor-disable {
+    --size: 0px;
+  }
+}

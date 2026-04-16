@@ -1,0 +1,403 @@
+.header {
+  display: flex;
+  max-width: var(--cMaxWidth);
+  width: var(--cWidth);
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  box-sizing: border-box;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  z-index: 9999;
+  background-color: var(--pt-nav-bg, #000000);
+  border-bottom: 1px solid var(--pt-nav-border, rgba(255,255,255,0.07));
+  backdrop-filter: blur(12px);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.header ul {
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  column-gap: 40px;
+  row-gap: 8px;
+  align-items: center;
+}
+
+.header ul li {
+  margin-left: 0px;
+  letter-spacing: 1px;
+  color: var(--pt-text, #ccc);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.4s ease;
+}
+
+.navbar-connect {
+  position: absolute;
+  display: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  color: var(--pt-text2, rgba(234,229,236,0.65));
+  transition: color 0.4s ease;
+}
+
+.navbar-title {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  color: var(--pt-text, #fff);
+  transition: color 0.4s ease;
+}
+
+/* Mobile hamburger - hidden by default */
+.mobile-menu-toggle {
+  display: none;
+}
+
+/* Mobile overlay - hidden by default */
+.mobile-menu-overlay {
+  display: none;
+}
+
+@media only screen and (min-width: 500px) {
+  .header {
+    padding: 16px 0;
+  }
+  .header ul {
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+  }
+  .header ul li {
+    color: #eae5ec;
+  }
+  .navbar-title {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .navbar-connect {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .header {
+    padding: 20px 0;
+  }
+  .header ul {
+    column-gap: 80px;
+    font-size: 16px;
+  }
+  .navbar-connect {
+    font-size: 16px;
+  }
+  .navbar-title {
+    font-size: 18px;
+  }
+}
+
+.navbar-views {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(94, 234, 212, 0.7);
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border: 1px solid rgba(94, 234, 212, 0.2);
+  border-radius: 20px;
+  background: rgba(94, 234, 212, 0.06);
+  cursor: default;
+}
+
+/* ── MOBILE ONLY (under 500px) ── */
+@media only screen and (max-width: 499px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+  }
+
+  .header {
+    padding: 15px 20px;
+    width: 100vw;
+    max-width: 100vw;
+    left: 0;
+    transform: none;
+    background-color: transparent !important;
+    border-bottom: none;
+  }
+
+  .navbar-title {
+    font-size: 18px;
+    color: #1a1a1a !important;
+    font-weight: 700;
+    z-index: 10001;
+  }
+
+  /* Dark theme - white text */
+  [data-portfolio-theme="dark"] .navbar-title {
+    color: #ffffff !important;
+  }
+
+  [data-portfolio-theme="dark"] .mobile-menu-toggle span {
+    background-color: #ffffff !important;
+  }
+
+  /* Midnight theme - light purple text */
+  [data-portfolio-theme="midnight"] .navbar-title {
+    color: #f5f0ff !important;
+  }
+
+  [data-portfolio-theme="midnight"] .mobile-menu-toggle span {
+    background-color: #f5f0ff !important;
+  }
+
+  /* Hamburger menu button */
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10001;
+  }
+
+  .mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: #000000;
+    border-radius: 2px;
+    display: block;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg);
+  }
+
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg);
+  }
+
+  /* Hide circles on mobile */
+  .landing-circle1,
+  .landing-circle2 {
+    display: none !important;
+  }
+
+  /* Mobile menu - slides from right */
+  .header ul {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 40%;
+    max-width: 160px;
+    height: auto;
+    max-height: 300px;
+    background: rgba(232, 228, 223, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 60px 18px 20px;
+    margin: 0;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 0 20px;
+    overflow-y: auto;
+  }
+
+  .header ul.active {
+    right: 0;
+  }
+
+  /* Dark theme menu */
+  [data-portfolio-theme="dark"] .header ul {
+    background: rgba(15, 22, 35, 0.95);
+    box-shadow: -3px 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  [data-portfolio-theme="dark"] .header ul li a {
+    color: #eae5ec;
+  }
+
+  [data-portfolio-theme="dark"] .header ul li .hover-in {
+    color: #eae5ec;
+  }
+
+  /* Midnight theme menu */
+  [data-portfolio-theme="midnight"] .header ul {
+    background: rgba(19, 15, 36, 0.95);
+    box-shadow: -3px 0 15px rgba(232, 121, 249, 0.2);
+  }
+
+  [data-portfolio-theme="midnight"] .header ul li a {
+    color: #f5f0ff;
+  }
+
+  [data-portfolio-theme="midnight"] .header ul li .hover-in {
+    color: #f5f0ff;
+  }
+
+  .header ul li {
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .header ul li a {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: 0.3px;
+  }
+
+  /* Simple text display for mobile - no hover effects */
+  .header ul li .hover-link {
+    overflow: visible;
+    display: block;
+  }
+
+  .header ul li .hover-in {
+    color: #000000;
+    transform: none;
+    position: static;
+  }
+
+  .header ul li .hover-in div {
+    display: none;
+  }
+
+  .header ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Theme toggle button styling */
+  .header ul li .tt-wrap {
+    margin-top: 10px;
+  }
+
+  .header ul li .tt-trigger {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+
+  /* Dark overlay */
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+    display: block;
+  }
+
+  /* Hide theme toggle from mobile menu */
+  .header ul li.desktop-only {
+    display: none;
+  }
+
+  /* Floating theme toggle button */
+  .floating-theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    z-index: 9999;
+    display: block;
+  }
+
+  .floating-theme-toggle .tt-wrap {
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .floating-theme-toggle .tt-trigger {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    font-size: 15px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    box-shadow: none;
+    overflow: visible;
+    transition: all 0.3s ease;
+  }
+
+  .floating-theme-toggle .tt-trigger:hover {
+    transform: scale(1.1);
+  }
+
+  .floating-theme-toggle .tt-icon {
+    font-size: 40px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  .floating-theme-toggle .tt-label {
+    display: none !important;
+  }
+
+  .floating-theme-toggle .tt-chevron {
+    display: none !important;
+  }
+
+  .floating-theme-toggle .tt-dropdown {
+    bottom: calc(100% + 10px);
+    top: auto;
+    right: 0;
+    left: auto;
+  }
+}
+
+/* Hide floating toggle on desktop */
+@media only screen and (min-width: 500px) {
+  .floating-theme-toggle {
+    display: none;
+  }
+
+  .header ul li.desktop-only {
+    display: block;
+  }
+}
+
+/* ── Large screens ── */
+@media only screen and (min-width: 1920px) {
+  .header {
+    padding: 24px 0;
+  }
+  .header ul {
+    column-gap: 100px;
+    font-size: 18px;
+  }
+}

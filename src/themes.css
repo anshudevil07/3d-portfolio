@@ -1,0 +1,348 @@
+/*
+  PortfolioGen — Theme System
+  3 themes: dark (default) | light | midnight
+  Applied via data-portfolio-theme on <html>
+*/
+
+/* ══════════════════════════════════════════
+   DARK THEME (default — original portfolio)
+   Deep navy + teal/cyan
+   ══════════════════════════════════════════ */
+:root,
+[data-portfolio-theme="dark"] {
+  --pt-bg:        #0a0e17;
+  --pt-bg2:       #0f1623;
+  --pt-surface:   rgba(255,255,255,0.04);
+  --pt-border:    rgba(255,255,255,0.08);
+  --pt-accent:    #5eead4;
+  --pt-accent2:   #22d3ee;
+  --pt-accent3:   #14b8a6;
+  --pt-text:      #eae5ec;
+  --pt-text2:     rgba(234,229,236,0.65);
+  --pt-text3:     #adacac;
+  --pt-circle:    #22d3ee;
+  --pt-circle-shadow: rgba(0,180,180,0.6);
+  --pt-career-grad: linear-gradient(0deg, #0d9488, #ffffff);
+  --pt-cursor:    #c084fc;
+  --pt-cursor-glow: rgba(175,131,255,0.7);
+  --pt-nav-bg:    #000000;
+  --pt-nav-border: rgba(255,255,255,0.07);
+  --pt-work-border: #363636;
+  --pt-tag-bg:    rgba(255,255,255,0.15);
+  --pt-tag-border: rgba(255,255,255,0.3);
+  --pt-what-border: rgba(255,255,255,1);
+  --pt-what-corner: rgba(255,255,255,1);
+  --pt-what-arrow: rgba(255,255,255,1);
+  --pt-views-color: rgba(94,234,212,0.7);
+  --pt-views-border: rgba(94,234,212,0.2);
+  --pt-views-bg:  rgba(94,234,212,0.06);
+}
+
+/* ══════════════════════════════════════════
+   LIGHT THEME
+   Muted sage green + warm stone — eye-refreshing
+   Deep muted tones, not bright white
+   ══════════════════════════════════════════ */
+[data-portfolio-theme="light"] {
+  --pt-bg:        #e8e4df;
+  --pt-bg2:       #f0ece7;
+  --pt-surface:   rgba(45,106,79,0.07);
+  --pt-border:    rgba(45,106,79,0.18);
+  --pt-accent:    #2d6a4f;
+  --pt-accent2:   #40916c;
+  --pt-accent3:   #1b4332;
+  --pt-text:      #1c1917;
+  --pt-text2:     #44403c;
+  --pt-text3:     #78716c;
+  --pt-circle:    #52b788;
+  --pt-circle-shadow: rgba(82,183,136,0.35);
+  --pt-career-grad: linear-gradient(0deg, #2d6a4f, #1c1917);
+  --pt-cursor:    #2d6a4f;
+  --pt-cursor-glow: rgba(45,106,79,0.5);
+  --pt-nav-bg:    rgba(210,228,222,0.94);
+  --pt-nav-border: rgba(0,0,0,0.08);
+  --pt-work-border: rgba(45,106,79,0.2);
+  --pt-tag-bg:    rgba(45,106,79,0.08);
+  --pt-tag-border: rgba(45,106,79,0.22);
+  --pt-what-border: rgba(45,106,79,0.5);
+  --pt-what-corner: rgba(45,106,79,0.7);
+  --pt-what-arrow: rgba(45,106,79,0.7);
+  --pt-views-color: #2d6a4f;
+  --pt-views-border: rgba(45,106,79,0.25);
+  --pt-views-bg:  rgba(45,106,79,0.08);
+}
+
+/* ══════════════════════════════════════════
+   MIDNIGHT THEME
+   Deep purple/black + rose gold + amber
+   ══════════════════════════════════════════ */
+[data-portfolio-theme="midnight"] {
+  --pt-bg:        #0d0a1a;
+  --pt-bg2:       #130f24;
+  --pt-surface:   rgba(232,121,249,0.04);
+  --pt-border:    rgba(232,121,249,0.12);
+  --pt-accent:    #e879f9;
+  --pt-accent2:   #f59e0b;
+  --pt-accent3:   #c026d3;
+  --pt-text:      #f5f0ff;
+  --pt-text2:     rgba(245,240,255,0.65);
+  --pt-text3:     rgba(245,240,255,0.4);
+  --pt-circle:    #e879f9;
+  --pt-circle-shadow: rgba(232,121,249,0.5);
+  --pt-career-grad: linear-gradient(0deg, #c026d3, #f5f0ff);
+  --pt-cursor:    #f59e0b;
+  --pt-cursor-glow: rgba(245,158,11,0.6);
+  --pt-nav-bg:    rgba(13,10,26,0.95);
+  --pt-nav-border: rgba(232,121,249,0.1);
+  --pt-work-border: rgba(232,121,249,0.15);
+  --pt-tag-bg:    rgba(232,121,249,0.1);
+  --pt-tag-border: rgba(232,121,249,0.25);
+  --pt-what-border: rgba(232,121,249,0.7);
+  --pt-what-corner: rgba(232,121,249,0.9);
+  --pt-what-arrow: rgba(232,121,249,0.9);
+  --pt-views-color: #e879f9;
+  --pt-views-border: rgba(232,121,249,0.25);
+  --pt-views-bg:  rgba(232,121,249,0.08);
+}
+
+/* ══════════════════════════════════════════
+   APPLY THEME VARIABLES TO ALL COMPONENTS
+   ══════════════════════════════════════════ */
+
+/* Body & background */
+[data-portfolio-theme] body,
+[data-portfolio-theme] #root {
+  background-color: var(--pt-bg);
+  color: var(--pt-text);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* CSS variable bridge — map pt vars to existing vars */
+[data-portfolio-theme] {
+  --accentColor: var(--pt-accent);
+  --backgroundColor: var(--pt-bg);
+}
+
+/* ── Navbar ── */
+[data-portfolio-theme] .header {
+  background-color: var(--pt-nav-bg);
+  border-bottom-color: var(--pt-nav-border);
+  backdrop-filter: blur(12px);
+  transition: background-color 0.4s ease;
+}
+[data-portfolio-theme] .header ul li { color: var(--pt-text); }
+[data-portfolio-theme] .navbar-connect { color: var(--pt-text2); }
+[data-portfolio-theme] .navbar-title { color: var(--pt-text); }
+[data-portfolio-theme] .navbar-views {
+  color: var(--pt-views-color);
+  border-color: var(--pt-views-border);
+  background: var(--pt-views-bg);
+}
+
+/* ── Landing circles ── */
+[data-portfolio-theme] .landing-circle1,
+[data-portfolio-theme] .landing-circle2 {
+  background-color: var(--pt-circle);
+  box-shadow: inset -50px 40px 50px var(--pt-circle-shadow);
+}
+
+/* ── Landing text ── */
+[data-portfolio-theme] .landing-intro h2 { color: var(--pt-accent); }
+[data-portfolio-theme] .landing-intro h1 { color: var(--pt-text); }
+[data-portfolio-theme] .landing-info h3 { color: var(--pt-accent); }
+[data-portfolio-theme] h2.landing-info-h2 { color: var(--pt-accent3); }
+
+/* ── Character model fade ── */
+[data-portfolio-theme] .character-model::after {
+  background-image: linear-gradient(to bottom, transparent, var(--pt-bg) 70%);
+}
+[data-portfolio-theme] .character-model::before {
+  background-color: var(--pt-bg);
+}
+[data-portfolio-theme] .character-rim {
+  background-color: var(--pt-circle);
+  box-shadow: inset 66px 35px 85px 0px var(--pt-circle-shadow);
+}
+
+/* ── About ── */
+[data-portfolio-theme] .about-heading { color: var(--pt-text); }
+[data-portfolio-theme] .about-heading em { color: var(--pt-accent); }
+[data-portfolio-theme] .about-me .para { color: var(--pt-text2); }
+[data-portfolio-theme] .about-line { background-color: var(--pt-accent); }
+[data-portfolio-theme] .about-tag { color: var(--pt-accent); }
+[data-portfolio-theme] .stat-num { color: var(--pt-text); }
+[data-portfolio-theme] .stat-label { color: var(--pt-text3); }
+[data-portfolio-theme] .about-stats { border-top-color: var(--pt-border); }
+
+/* ── What I Do ── */
+[data-portfolio-theme] .do-h2 { color: var(--pt-accent); }
+[data-portfolio-theme] .what-content h3 { color: var(--pt-text); }
+[data-portfolio-theme] .what-content h4 { color: var(--pt-text2); }
+[data-portfolio-theme] .what-content p { color: var(--pt-text2); }
+[data-portfolio-theme] .what-tags {
+  background-color: var(--pt-tag-bg);
+  border-color: var(--pt-tag-border);
+  color: var(--pt-text);
+}
+[data-portfolio-theme] .what-content::before,
+[data-portfolio-theme] .what-corner::before,
+[data-portfolio-theme] .what-content::after,
+[data-portfolio-theme] .what-corner::after {
+  border-color: var(--pt-what-corner);
+}
+[data-portfolio-theme] .what-arrow { border-color: var(--pt-what-arrow); }
+[data-portfolio-theme] .what-arrow::before {
+  border-color: var(--pt-what-arrow);
+}
+[data-portfolio-theme] .what-border1 svg line,
+[data-portfolio-theme] .what-border2 svg line {
+  stroke: var(--pt-what-border);
+}
+
+/* ── Career ── */
+[data-portfolio-theme] .career-section h2 {
+  background: var(--pt-career-grad);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-portfolio-theme] .career-info h4 { color: var(--pt-text); }
+[data-portfolio-theme] .career-info h5 { color: var(--pt-accent); }
+[data-portfolio-theme] .career-info h3 { color: var(--pt-text); }
+[data-portfolio-theme] .career-info-box p { color: var(--pt-text2); }
+[data-portfolio-theme] .career-timeline {
+  background-image: linear-gradient(to top, var(--pt-accent3) 20%, var(--pt-accent) 50%, transparent 95%);
+}
+[data-portfolio-theme] .career-dot {
+  background-color: var(--pt-accent3);
+  box-shadow: 0 0 5px 2px var(--pt-accent2), 0 0 15px 8px var(--pt-accent), 0 0 60px 15px var(--pt-accent2);
+}
+
+/* ── Work ── */
+[data-portfolio-theme] .work-section { background-color: var(--pt-bg); }
+[data-portfolio-theme] .work-section h2 { color: var(--pt-text); }
+[data-portfolio-theme] .work-section h2 > span { color: var(--pt-accent); }
+[data-portfolio-theme] .carousel-track-container,
+[data-portfolio-theme] .work-list-item {
+  border-color: var(--pt-work-border);
+}
+[data-portfolio-theme] .work-list-item:last-child { border-color: var(--pt-work-border); }
+[data-portfolio-theme] .carousel-details h4 { color: var(--pt-text); }
+[data-portfolio-theme] .carousel-category { color: var(--pt-text3); }
+[data-portfolio-theme] .carousel-tools p { color: var(--pt-text3); }
+[data-portfolio-theme] .carousel-number h3 { color: var(--pt-text); }
+[data-portfolio-theme] .work-link { background-color: var(--pt-bg); }
+[data-portfolio-theme] .carousel-arrow {
+  background: var(--pt-surface);
+  border-color: var(--pt-border);
+  color: var(--pt-text);
+}
+[data-portfolio-theme] .carousel-arrow:hover {
+  background: rgba(var(--pt-accent), 0.15);
+  border-color: var(--pt-accent);
+  color: var(--pt-accent);
+}
+[data-portfolio-theme] .carousel-dot { border-color: var(--pt-border); }
+[data-portfolio-theme] .carousel-dot-active {
+  background: var(--pt-accent);
+  border-color: var(--pt-accent);
+}
+
+/* ── Contact ── */
+[data-portfolio-theme] .contact-section { background-color: var(--pt-bg); }
+[data-portfolio-theme] .contact-section h3 { color: var(--pt-text); }
+[data-portfolio-theme] .contact-flex h4 { color: var(--pt-text2); }
+[data-portfolio-theme] .contact-flex p { color: var(--pt-text2); }
+[data-portfolio-theme] .contact-box h2 { color: var(--pt-text); }
+[data-portfolio-theme] .contact-box h2 > span { color: var(--pt-accent); }
+[data-portfolio-theme] .contact-box h5 { color: var(--pt-text3); }
+[data-portfolio-theme] a.contact-social {
+  color: var(--pt-text);
+  border-bottom-color: var(--pt-border);
+}
+[data-portfolio-theme] a.contact-social:hover { color: var(--pt-accent); }
+
+/* ── Cursor ── */
+[data-portfolio-theme] .cursor-main {
+  background-color: var(--pt-cursor);
+  box-shadow: 0 0 25px 4px var(--pt-cursor-glow);
+}
+
+/* ── Social icons ── */
+[data-portfolio-theme] .social-icons a { color: var(--pt-text); }
+[data-portfolio-theme] .social-icons a:hover { color: var(--pt-accent); }
+[data-portfolio-theme] .resume-button:hover { color: var(--pt-text); }
+
+/* ── Hover links ── */
+[data-portfolio-theme] .hover-link:hover .hover-in { color: var(--pt-accent); }
+
+/* ── Light theme specific overrides ── */
+[data-portfolio-theme="light"] body,
+[data-portfolio-theme="light"] #root {
+  background: radial-gradient(ellipse 90% 70% at 50% 35%, #f0f5f2 0%, #ddeae4 50%, #c8dbd3 100%);
+  background-attachment: fixed;
+}
+[data-portfolio-theme="light"] .character-model::after {
+  background-image: linear-gradient(to bottom, transparent, #ddeae4 70%);
+}
+[data-portfolio-theme="light"] .character-model::before {
+  background-color: #ddeae4;
+}
+[data-portfolio-theme="light"] .landing-intro h1 { color: #1c1917; }
+[data-portfolio-theme="light"] .about-heading { color: #1c1917; }
+[data-portfolio-theme="light"] .stat-num { color: #1c1917; }
+[data-portfolio-theme="light"] .career-info h4 { color: #1c1917; }
+[data-portfolio-theme="light"] .career-info h3 { color: #1c1917; }
+[data-portfolio-theme="light"] .work-section h2 { color: #1c1917; }
+[data-portfolio-theme="light"] .carousel-details h4 { color: #1c1917; }
+[data-portfolio-theme="light"] .contact-section h3 { color: #1c1917; }
+[data-portfolio-theme="light"] .contact-box h2 { color: #1c1917; }
+[data-portfolio-theme="light"] .what-content h3 { color: #1c1917; }
+[data-portfolio-theme="light"] .work-section { background: transparent; }
+[data-portfolio-theme="light"] .contact-section { background: transparent; }
+
+/* ── Midnight theme specific overrides ── */
+[data-portfolio-theme="midnight"] body,
+[data-portfolio-theme="midnight"] #root {
+  background: radial-gradient(ellipse at top, #1a0a2e 0%, #0d0a1a 60%);
+  background-attachment: fixed;
+}
+[data-portfolio-theme="midnight"] .work-section { background: transparent; }
+[data-portfolio-theme="midnight"] .contact-section { background: transparent; }
+[data-portfolio-theme="midnight"] .character-model::after {
+  background-image: linear-gradient(to bottom, transparent, #0d0a1a 70%);
+}
+[data-portfolio-theme="midnight"] .character-model::before {
+  background-color: #0d0a1a;
+}
+
+/* ── Light theme font weight boost ── */
+[data-portfolio-theme="light"] .landing-intro h1 { font-weight: 800; }
+[data-portfolio-theme="light"] .landing-intro h2 { font-weight: 600; }
+[data-portfolio-theme="light"] .landing-info h3 { font-weight: 600; }
+[data-portfolio-theme="light"] h2.landing-info-h2 { font-weight: 800; }
+[data-portfolio-theme="light"] .about-heading { font-weight: 800; }
+[data-portfolio-theme="light"] .about-me .para { font-weight: 500; }
+[data-portfolio-theme="light"] .about-tag { font-weight: 700; }
+[data-portfolio-theme="light"] .stat-num { font-weight: 800; }
+[data-portfolio-theme="light"] .stat-label { font-weight: 600; }
+[data-portfolio-theme="light"] .what-content h3 { font-weight: 800; }
+[data-portfolio-theme="light"] .what-content h4 { font-weight: 600; opacity: 0.7; }
+[data-portfolio-theme="light"] .what-content p { font-weight: 500; }
+[data-portfolio-theme="light"] .what-tags { font-weight: 600; }
+[data-portfolio-theme="light"] .career-info h4 { font-weight: 700; }
+[data-portfolio-theme="light"] .career-info h5 { font-weight: 600; }
+[data-portfolio-theme="light"] .career-info h3 { font-weight: 700; }
+[data-portfolio-theme="light"] .career-info-box p { font-weight: 500; }
+[data-portfolio-theme="light"] .work-section h2 { font-weight: 700; }
+[data-portfolio-theme="light"] .carousel-details h4 { font-weight: 700; }
+[data-portfolio-theme="light"] .carousel-category { font-weight: 500; }
+[data-portfolio-theme="light"] .carousel-tools p { font-weight: 500; }
+[data-portfolio-theme="light"] .contact-section h3 { font-weight: 700; }
+[data-portfolio-theme="light"] .contact-flex h4 { font-weight: 700; opacity: 0.8; }
+[data-portfolio-theme="light"] .contact-flex p { font-weight: 500; }
+[data-portfolio-theme="light"] .contact-box h2 { font-weight: 600; }
+[data-portfolio-theme="light"] a.contact-social { font-weight: 600; }
+[data-portfolio-theme="light"] .navbar-title { font-weight: 800; }
+[data-portfolio-theme="light"] .header ul li { font-weight: 700; }
+[data-portfolio-theme="light"] .navbar-connect { font-weight: 600; }
