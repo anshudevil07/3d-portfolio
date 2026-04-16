@@ -5,7 +5,5 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
-    // Serve index.html for all routes so /portfolio/:slug works
-    historyApiFallback: true,
   },
 });
