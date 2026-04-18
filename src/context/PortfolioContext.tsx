@@ -1,7 +1,11 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { demo } from "../data/demoData";
 
-const API = "http://localhost:5000/api";
+const API = (import.meta.env.VITE_API_URL as string | undefined)?.trim()
+  || "https://portfolio-backend-anshudevil07s-projects.vercel.app/api";
+
+const HOME_URL = (import.meta.env.VITE_HOME_URL as string | undefined)?.trim()
+  || "https://portfolio-home-th9npwogf-anshudevil07s-projects.vercel.app";
 
 export interface PortfolioData {
   initials: string;
@@ -133,7 +137,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
       <div style={{ fontSize:"3rem" }}>🔍</div>
       <h2 style={{ fontSize:"1.5rem", fontWeight:700 }}>Portfolio Not Found</h2>
       <p style={{ color:"rgba(234,229,236,0.5)", maxWidth:360 }}>This portfolio doesn't exist or the link is incorrect.</p>
-      <a href="http://localhost:3000" style={{ padding:"12px 28px", background:"#5eead4", borderRadius:10, color:"#0a0e17", fontWeight:700, textDecoration:"none" }}>← Back to Home</a>
+      <a href={HOME_URL} style={{ padding:"12px 28px", background:"#5eead4", borderRadius:10, color:"#0a0e17", fontWeight:700, textDecoration:"none" }}>← Back to Home</a>
     </div>
   );
 
@@ -142,7 +146,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
       <div style={{ fontSize:"3rem" }}>🚫</div>
       <h2 style={{ fontSize:"1.5rem", fontWeight:700 }}>Portfolio Unavailable</h2>
       <p style={{ color:"rgba(234,229,236,0.5)", maxWidth:360 }}>This portfolio has been deactivated.</p>
-      <a href="http://localhost:3000" style={{ padding:"12px 28px", background:"#5eead4", borderRadius:10, color:"#0a0e17", fontWeight:700, textDecoration:"none" }}>← Back to Home</a>
+      <a href={HOME_URL} style={{ padding:"12px 28px", background:"#5eead4", borderRadius:10, color:"#0a0e17", fontWeight:700, textDecoration:"none" }}>← Back to Home</a>
     </div>
   );
 
