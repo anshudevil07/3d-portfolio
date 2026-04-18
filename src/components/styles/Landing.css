@@ -170,7 +170,7 @@
 
 @media screen and (max-width: 499px) {
   .landing-intro {
-    top: 2%;
+    top: 0%;
   }
 
   .landing-intro h2 {

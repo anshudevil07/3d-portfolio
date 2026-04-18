@@ -113,7 +113,9 @@ function mapToPortfolioData(raw: Record<string, unknown>): PortfolioData {
 }
 
 export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
-  const [data, setData] = useState<PortfolioData>(demo as PortfolioData);
+  const isPortfolioRoute = /^\/portfolio\/(.+)$/.test(window.location.pathname);
+  // On a portfolio route, start null so we never flash demo data
+  const [data, setData] = useState<PortfolioData | null>(isPortfolioRoute ? null : demo as PortfolioData);
   const [notFound, setNotFound] = useState(false);
   const [rejected, setRejected] = useState(false);
 
@@ -149,6 +151,9 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
       <a href={HOME_URL} style={{ padding:"12px 28px", background:"#5eead4", borderRadius:10, color:"#0a0e17", fontWeight:700, textDecoration:"none" }}>← Back to Home</a>
     </div>
   );
+
+  // Still loading — show nothing (the existing Loading screen handles this)
+  if (data === null) return null;
 
   return (
     <PortfolioContext.Provider value={data}>
